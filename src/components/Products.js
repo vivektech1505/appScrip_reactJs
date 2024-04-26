@@ -4,31 +4,33 @@ import arrow from "../Assets/arrow-left.png";
 import Mock from "../Assets/mockapi/mockdata";
 import heart from "../Assets/heart.png";
 const Products = () => {
+
   const [toggle, setToggle] = useState(false);
   const [filter, setFilter] = useState("Show Filter");
   const [zind, setZind] = useState("");
   const [adjuststyle, setAdjustStyle] = useState("products");
   const [like, setLike] = useState("");
-  const [liketoggle, setLiketoggle] = useState(false);
   const mydata = Mock;
   const [Mockdata, setMockData] = useState(mydata);
+  const [count, setCount] = useState(0);
+
   const [idealfor, setIdealfor] = useState(false);
   const [rotate, setRotate] = useState("rotate90deg");
   const [occasion, setOccasion] = useState(false);
   const [icocls, setIcocls] = useState("rotate90deg");
   const [work, setWork] = useState(false);
-  const [fabric, setFabric] = useState(false);
-  const [segment, setsegment] = useState(false);
-  const [suitable, setsuitable] = useState(false);
-  const [rawmaterials, setrawmaterials] = useState(false);
-  const [patern, setpattern] = useState(false);
   const [workcls, setworkcls] = useState("rotate90deg");
+  const [fabric, setFabric] = useState(false);
   const [fabriccls, setfabriccls] = useState("rotate90deg");
+  const [segment, setSegment] = useState(false);
   const [segmentcls, setsegmentcls] = useState("rotate90deg");
+  const [suitable, setSuitable] = useState(false);
   const [suitablecls, setsuitablecls] = useState("rotate90deg");
+  const [rawmaterials, setRawmaterials] = useState(false);
   const [rawcls, setrawcls] = useState("rotate90deg");
+  const [patern, setPatern] = useState(false);
   const [patterncls, setpatterncls] = useState("rotate90deg");
-  const [count, setCount] = useState(0);
+
 
   // const [lowtohigh, setLowtoHigh] = useState([])
   // const [hightolow, setHightolow] = useState([])
@@ -36,97 +38,95 @@ const Products = () => {
   useEffect(() => {}, [Mockdata]);
 
   const handleIdeal = () => {
-    idealfor ? setIdealfor(false) : setIdealfor(true);
-    !idealfor ? setRotate("rotate270deg") : setRotate("rotate90deg");
+    setIdealfor(!idealfor);
+    setRotate(idealfor ? "rotate270deg" : "rotate90deg");
   };
+  
   const handleOccasion = () => {
-    occasion ? setOccasion(false) : setOccasion(true);
-    !occasion ? setIcocls("rotate270deg") : setIcocls("rotate90deg");
+    setOccasion(!occasion);
+    setIcocls(occasion ? "rotate270deg" : "rotate90deg");
   };
+  
   const handlework = () => {
-    work ? setWork(false) : setWork(true);
-    !work ? setworkcls("rotate270deg") : setworkcls("rotate90deg");
+    setWork(!work);
+    setworkcls(work ? "rotate270deg" : "rotate90deg");
   };
+  
   const handfabric = () => {
-    fabric ? setFabric(false) : setFabric(true);
-    !fabric ? setfabriccls("rotate270deg") : setfabriccls("rotate90deg");
+    setFabric(!fabric);
+    setfabriccls(fabric ? "rotate270deg" : "rotate90deg");
   };
+  
   const handsegment = () => {
-    segment ? setsegment(false) : setsegment(true);
-    !segment ? setsegmentcls("rotate270deg") : setsegmentcls("rotate90deg");
+    setSegment(!segment);
+    setsegmentcls(segment ? "rotate270deg" : "rotate90deg");
   };
+  
   const handsuitable = () => {
-    suitable ? setsuitable(false) : setsuitable(true);
-    !suitable ? setsuitablecls("rotate270deg") : setsuitablecls("rotate90deg");
+    setSuitable(!suitable);
+    setsuitablecls(suitable ? "rotate270deg" : "rotate90deg");
   };
+  
   const handrawmeterials = () => {
-    rawmaterials ? setrawmaterials(false) : setrawmaterials(true);
-    !rawmaterials ? setrawcls("rotate270deg") : setrawcls("rotate90deg");
+    setRawmaterials(!rawmaterials);
+    setrawcls(rawmaterials ? "rotate270deg" : "rotate90deg");
   };
+  
   const handpatern = () => {
-    patern ? setpattern(false) : setpattern(true);
-    !patern ? setpatterncls("rotate270deg") : setpatterncls("rotate90deg");
-  };
-  const handlelowtohigh = () => {
-    let xy = mydata.sort((a, b) => a.price - b.price);
-    setMockData(xy);
-    console.log(Mockdata);
-    setCount(count + 1);
-  };
-  const handlehightolow = () => {
-    let xy = mydata.sort((a, b) => b.price - a.price);
-    setMockData(xy);
-    console.log(Mockdata);
-    setCount(count + 1);
-  };
-  const handlerecommended = () => {
-    let xy = mydata.sort((a,b)=>{
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-
-      if(nameA < nameB) {
-        return -1
-      }
-      if(nameA > nameB){
-        return 1
-      }
-      return 0
-
-    });
-    setMockData(xy);
-    console.log(Mockdata);
-    setCount(count + 1);
-  };
-  const handlePopular = () => {
-    let xy = mydata.sort((a,b)=>{
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-
-      if(nameA < nameB) {
-        return 1
-      }
-      if(nameA > nameB){
-        return -1
-      }
-      return 0
-
-    });
-    setMockData(xy);
-    console.log(Mockdata);
-    setCount(count + 1);
+    setPatern(!patern);
+    setpatterncls(patern ? "rotate270deg" : "rotate90deg");
   };
 
   const handleFilterVisibility = () => {
-    toggle ? setToggle(false) : setToggle(true);
-    !toggle ? setFilter("Hide Filter") : setFilter("Show Filter");
-    !toggle ? setAdjustStyle("products width75") : setAdjustStyle("products");
+    setToggle(!toggle);
+    setFilter(toggle ? "Show Filter" : "Hide Filter");
+    setAdjustStyle(toggle ? "products" : "products width75");
   };
-  
 
   const handleZindex = () => {
-    toggle ? setToggle(false) : setToggle(true);
-    toggle ? setZind("zind2") : setZind("");
+    setToggle(!toggle);
+    setZind(toggle ? "" : "zind2");
   };
+
+  const handleSortChange = (event) => {
+    const selectedOption = event.target.value;
+    let sortedData = [...mydata];
+
+    switch (selectedOption) {
+      case "Recommended":
+        sortedData = sortedData.sort((a, b) => {
+          const nameA = a.name.toUpperCase();
+          const nameB = b.name.toUpperCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+        break;
+      case "Newest first":
+        sortedData = sortedData.sort((a, b) => b.id - a.id);
+        break;
+      case "Popular":
+        sortedData = sortedData.sort((a, b) => a.id - b.id);
+        break;
+      case "hight to low":
+        sortedData = sortedData.sort((a, b) => b.price - a.price);
+        break;
+      case "low to high":
+        sortedData = sortedData.sort((a, b) => a.price - b.price);
+        break;
+      default:
+        break;
+    }
+
+    setMockData(sortedData);
+    setCount(count + 1);
+  };
+
+  const handleLikeClick = () =>{
+    setLike(".liked");
+    
+  }
+  
   return (
     <>
       <section className="filter">
@@ -134,7 +134,7 @@ const Products = () => {
           <span className="qty">3425 ITEMS</span>
           <span className="hidefilter" onClick={handleFilterVisibility}>
             <span className="ico">
-              <img style={{}} src={arrow} alt="arrow" />
+              <img style={{}} src={arrow} alt="arrow"  />
             </span>
             <span className="txt">{filter}</span>
           </span>
@@ -144,18 +144,12 @@ const Products = () => {
         </span>
         <span className="sort">
           <span className="txt">
-            <select name="" id="select" onChange={()=>setCount(count + 1)}>
-              <option value="Recommended" onClick={handlerecommended}> RECOMMENDED</option>
-              <option value="Newest first"> NEWEST FIRST</option>
-              <option value="Popular" onClick={handlePopular}> POPULAR</option>
-              <option value="hight to low" onClick={handlehightolow}>
-                {" "}
-                PRICE : HIGH TO LOW
-              </option>
-              <option value="low to high" onClick={handlelowtohigh}>
-                {" "}
-                PRICE : LOW TO HIGH
-              </option>
+            <select name="" id="select" onChange={handleSortChange}>
+              <option value="Recommended">RECOMMENDED</option>
+              <option value="Newest first">NEWEST FIRST</option>
+              <option value="Popular">POPULAR</option>
+              <option value="hight to low">PRICE: HIGH TO LOW</option>
+              <option value="low to high">PRICE: LOW TO HIGH</option>
             </select>
           </span>{" "}
         </span>
@@ -171,7 +165,7 @@ const Products = () => {
               <span className="type-heading">
                 <span>IDEAL FOR</span>
 
-                <img src={arrow} onClick={handleIdeal} className={rotate} />
+                <img src={arrow} onClick={handleIdeal} className={rotate} alt="abc"/>
               </span>
               <span className="ideal-all">All</span>
               {idealfor ? (
@@ -230,7 +224,7 @@ const Products = () => {
             <div className="work">
               <span>
                 WORK
-                <img src={arrow} className={workcls} onClick={handlework} />
+                <img src={arrow} className={workcls} onClick={handlework} alt="abc"/>
               </span>
               <span className="work-type">All</span>
               {work ? (
@@ -257,7 +251,7 @@ const Products = () => {
             <div className="fabric">
               <span>
                 FABRIC
-                <img src={arrow} className={fabriccls} onClick={handfabric} />
+                <img src={arrow} className={fabriccls} onClick={handfabric} alt="abc"/>
               </span>
               <span className="fabric-type">All</span>
               {fabric ? (
@@ -284,7 +278,7 @@ const Products = () => {
             <div className="segment">
               <span>
                 SEGMENT
-                <img src={arrow} className={segmentcls} onClick={handsegment} />
+                <img src={arrow} className={segmentcls} onClick={handsegment} alt="abc"/>
               </span>
               <span className="segment-type">All</span>
               {segment ? (
@@ -315,6 +309,7 @@ const Products = () => {
                   src={arrow}
                   className={suitablecls}
                   onClick={handsuitable}
+                  alt="abc"
                 />
               </span>
               <span className="suitable-type">All</span>
@@ -346,6 +341,7 @@ const Products = () => {
                   src={arrow}
                   className={rawcls}
                   onClick={handrawmeterials}
+                  alt="abc"
                 />
               </span>
               <span className="raw-type">All</span>
@@ -373,7 +369,7 @@ const Products = () => {
             <div className="pattert">
               <span>
                 PATTERN
-                <img src={arrow} className={patterncls} onClick={handpatern} />
+                <img src={arrow} className={patterncls} onClick={handpatern} alt="span" />
               </span>
               <span className="pattern-type">All</span>
               {patern ? (
@@ -402,18 +398,18 @@ const Products = () => {
           ""
         )}
         <section className={adjuststyle}>
-          {console.log(Mockdata)}
           {Mockdata.map((val, ind) => (
             <div className="card" key={ind}>
-              <img src={val.img} />
+              <img src={val.img} alt={val.name} />
               <span className="title">{val.name}</span>
               <span className="prod-desc">
                 <span>{val.desc}</span>{" "}
                 <img
-                  className={like}
-                  src={heart}
-                  alt=""
-                />
+                className={`like ${like}`} // Use template literals to conditionally apply the "liked" class
+                src={heart}
+                alt="Like"
+                onClick={handleLikeClick} // Add onClick event handler to call handleLikeClick
+              />
               </span>
             </div>
           ))}
@@ -424,3 +420,4 @@ const Products = () => {
 };
 
 export default Products;
+
